@@ -6,12 +6,14 @@ namespace Player
     public class PlayerPhysics : MonoBehaviour
     {
         [Header("GroundChecker")] 
-        public Transform groundCheckPoint;
-        public float checkRadius = .5f;
-        public LayerMask whatIsGround;
+        [SerializeField] private Transform groundCheckPoint;
+        [SerializeField] private float checkRadius = .5f;
+        [SerializeField] private LayerMask whatIsGround;
 
-        [Header("Gravitation")] 
-        public float gravity = -9.81f;
+        [Header("Physics")] 
+        [SerializeField] private float gravity = -9.81f;
+        [SerializeField] private float frictionFactor = 5f;
+        
         private Vector3 _velocity;
         
         private bool _isGrounded = false;
@@ -36,7 +38,14 @@ namespace Player
             }
 
             _velocity.y += gravity * Time.deltaTime;
+            _velocity.x = Mathf.MoveTowards(_velocity.x, 0, Time.deltaTime * frictionFactor);
+            _velocity.z = Mathf.MoveTowards(_velocity.z, 0, Time.deltaTime * frictionFactor);
             _characterController.Move(_velocity * Time.deltaTime);
+        }
+
+        public void AddForce(Vector3 force)
+        {
+            _velocity += force;
         }
 
         private void CheckGround()

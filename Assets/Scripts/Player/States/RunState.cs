@@ -23,7 +23,6 @@ namespace Player.States
             _characterController = player.CharacterController;
         }
 
-
         public override void Process()
         {
             Move();

@@ -10,9 +10,14 @@ namespace Player
         [SerializeField] private float speedMoving = 5f;
         [SerializeField] private float smoothAngleTime = 0.1f;
         [SerializeField] private Transform playerCamera;
-
+        
+        [Header("Dash properties")]
+        [SerializeField] private float dashSpeed = 4;
+        [SerializeField] private float dashDistance = 2;
+        
         private IdleState _idleState;
         private RunState _runState;
+        private DashState _dashState;
         private PlayerState _currentState;
         
         public CharacterController CharacterController { get; private set; }
@@ -21,14 +26,21 @@ namespace Player
         private void Awake()
         {
             CharacterController = GetComponent<CharacterController>();
+            
             GameActions = new GameActions();
             GameActions.Enable();
+            GameActions.Player.Dash.performed += context =>
+            {
+                SetState(_dashState);
+            };
 
             _idleState = new IdleState(this);
             _runState = new RunState(this, speedMoving, smoothAngleTime, playerCamera);
+            _dashState = new DashState(this, dashSpeed, dashDistance);
 
             _idleState.Initialize();
             _runState.Initialize();
+            _dashState.Initialize();
         }
 
         private void Start()
@@ -44,6 +56,8 @@ namespace Player
 
         private void CheckState()
         {
+            //if (_currentState == _dashState) return;
+            
             if (GameActions.Player.MoveHorizontal.ReadValue<float>()!= 0 || GameActions.Player.MoveVertical.ReadValue<float>() != 0)
             {
                 if (_currentState != _runState) SetState(_runState);
