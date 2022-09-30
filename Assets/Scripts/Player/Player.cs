@@ -1,15 +1,18 @@
 using System;
+using Mirror;
 using Player.States;
 using UnityEngine;
 
 namespace Player
 {
-    public class Player : MonoBehaviour
+    public class Player : NetworkBehaviour
     {
+        [Header("Spawn properties")]
+        [SerializeField] private PlayerCamera playerCameraPrefab;
+        
         [Header("Moving properties")]
         [SerializeField] private float speedMoving = 5f;
         [SerializeField] private float smoothAngleTime = 0.1f;
-        [SerializeField] private Transform playerCamera;
         
         [Header("Dash properties")]
         [SerializeField] private float dashSpeed = 4;
@@ -22,9 +25,26 @@ namespace Player
         
         public CharacterController CharacterController { get; private set; }
         public GameActions GameActions { get; private set; }
+
+        public PlayerNetwork PlayerNetwork => GetComponent<PlayerNetwork>();
+
+        private PlayerCamera _playerCamera;
         
-        private void Awake()
+        private void Start()
         {
+            if (!isLocalPlayer)
+            {
+                Destroy(this);
+                return;
+            }
+
+            NetworkData.Instance.LocalPlayer = this;
+
+            GlobalCamera.Instance.gameObject.SetActive(false);
+            _playerCamera = Instantiate(playerCameraPrefab);
+            _playerCamera.Cinemachine.Follow = transform;
+            _playerCamera.Cinemachine.LookAt = transform;
+            
             CharacterController = GetComponent<CharacterController>();
             
             GameActions = new GameActions();
@@ -35,22 +55,24 @@ namespace Player
             };
 
             _idleState = new IdleState(this);
-            _runState = new RunState(this, speedMoving, smoothAngleTime, playerCamera);
+            _runState = new RunState(this, speedMoving, smoothAngleTime, _playerCamera.Camera.transform);
             _dashState = new DashState(this, dashSpeed, dashDistance);
 
             _idleState.Initialize();
             _runState.Initialize();
             _dashState.Initialize();
-        }
-
-        private void Start()
-        {
+            
             _currentState = _idleState;
         }
 
+        /*private void Start()
+        {
+            _currentState = _idleState;
+        }*/
+
         private void Update()
         {
-            _currentState.Process();
+            _currentState?.Process();
             CheckState();
         }
 
