@@ -371,9 +371,9 @@ GameObject:
   - component: {fileID: 10327721208558239}
   - component: {fileID: 10327721208558238}
   - component: {fileID: -4741124430663193400}
-  - component: {fileID: -1488773246384806650}
+  - component: {fileID: 4130484537209094086}
   m_Layer: 5
-  m_Name: PlayerUI (1)
+  m_Name: PlayerRoomUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   visible: 0
   m_AssetId: 00f416d1637b7ed459f5a7555b976b8d
   hasSpawned: 0
---- !u!114 &-1488773246384806650
+--- !u!114 &4130484537209094086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,11 +435,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 10327721208558236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79874ac94d5b1314788ecf0e86bd23fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bf8fc8ac59f18c4d86cd3bd2a75185f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  showRoomGUI: 1
-  readyToBegin: 0
-  index: 0
+  playerName: {fileID: 10327720197013450}
+  isReadyCheckBox: {fileID: 10327720926808324}
