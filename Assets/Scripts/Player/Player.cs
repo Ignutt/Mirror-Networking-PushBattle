@@ -38,8 +38,6 @@ namespace Player
                 return;
             }
 
-            NetworkData.Instance.LocalPlayer = this;
-
             GlobalCamera.Instance.gameObject.SetActive(false);
             _playerCamera = Instantiate(playerCameraPrefab);
             _playerCamera.Cinemachine.Follow = transform;
