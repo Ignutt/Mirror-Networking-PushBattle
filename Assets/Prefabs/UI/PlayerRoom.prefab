@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  showRoomGUI: 1
+  showRoomGUI: 0
   readyToBegin: 0
   index: 0
   roomPlayerPrefab: {fileID: 4130484537209094086, guid: 00f416d1637b7ed459f5a7555b976b8d, type: 3}

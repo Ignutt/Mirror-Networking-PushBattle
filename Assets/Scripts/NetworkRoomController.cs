@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
+using Player;
 using UnityEngine;
 
 public class NetworkRoomController : NetworkRoomManager
@@ -28,5 +29,12 @@ public class NetworkRoomController : NetworkRoomManager
         }
         else
             OnRoomServerAddPlayer(conn);
+    }
+
+    public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
+    {
+        gamePlayer.GetComponent<PlayerNetwork>().playerName =
+            roomPlayer.GetComponent<NetworkPlayerRoomController>().playerName;
+        return true;
     }
 }
