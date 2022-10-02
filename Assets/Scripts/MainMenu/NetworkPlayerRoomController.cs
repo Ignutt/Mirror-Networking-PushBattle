@@ -35,6 +35,8 @@ public class NetworkPlayerRoomController : NetworkRoomPlayer
     private void Update()
     {
         _playerRoomUI.playerName.text = playerName;
+        
+        if (!_playerRoomUI.isReadyCheckBox) return;
         _playerRoomUI.isReadyCheckBox.SetActive(readyToBegin);    
     }
 

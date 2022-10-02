@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 namespace Common
 {
@@ -10,6 +12,12 @@ namespace Common
         {
             get => PlayerPrefs.GetString(PlayerNamePrefsKey);
             set => PlayerPrefs.SetString(PlayerNamePrefsKey, value);
+        }
+
+        public static IEnumerator MakeActionDelay(Action action, float time)
+        {
+            yield return new WaitForSeconds(time);
+            action.Invoke();
         }
     }
 }

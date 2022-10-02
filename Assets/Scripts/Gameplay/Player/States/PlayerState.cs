@@ -6,12 +6,12 @@ namespace Player
 {
     public abstract class PlayerState
     {
-        public Player player;
+        public Gameplay.Player.Player player;
         
         public readonly Action onEnterState = () => {}; 
         public readonly Action onFinishState = () => {};
 
-        public PlayerState(Player player)
+        public PlayerState(Gameplay.Player.Player player)
         {
             this.player = player;
         }

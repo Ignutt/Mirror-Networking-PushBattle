@@ -1,13 +1,14 @@
-﻿using System;
-using Mirror;
+﻿using Mirror;
 using TMPro;
 using UnityEngine;
 
-namespace Player
+namespace Gameplay.Player
 {
     public class PlayerNetwork : NetworkBehaviour
     {
         [SerializeField] private TextMeshPro nameText;
+        [SerializeField] private Transform graphic;
+        
 
         [SyncVar]
         public string playerName;

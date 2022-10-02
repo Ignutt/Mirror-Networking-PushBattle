@@ -9,7 +9,7 @@ namespace Player.States
             
         }
 
-        public IdleState(Player player) : base(player)
+        public IdleState(Gameplay.Player.Player player) : base(player)
         {
         }
     }

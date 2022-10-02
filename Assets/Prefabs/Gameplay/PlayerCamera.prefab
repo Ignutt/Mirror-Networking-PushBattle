@@ -636,7 +636,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8995339170226893728}
-  m_LocalRotation: {x: -0.040229514, y: 0.9340302, z: -0.11151696, w: -0.33694682}
+  m_LocalRotation: {x: -0.040229395, y: 0.93403035, z: -0.11151639, w: -0.3369467}
   m_LocalPosition: {x: 6.7760534, y: 2.8491483, z: 8.169512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
