@@ -22,19 +22,18 @@ namespace Gameplay.Player
         [Header("Dash properties")]
         [SerializeField] private float dashSpeed = 4;
 
-        [Header("Contusion properties")]
-        public Material[] material;
-        int curColOfThisObject;
-        [SyncVar]
-        private int curSyncVarOfThisObject;
 
-        
         private IdleState _idleState;
         private RunState _runState;
         private DashState _dashState;
         private PlayerState _currentState;
+
+        public PlayerState CurrentState => _currentState;
+        public DashState DashState => _dashState;
         
         public GameActions GameActions { get; private set; }
+
+        public Transform Graphic => graphic;
 
         public Rigidbody Rigidbody { get; private set; }
         public MeshRenderer MeshRenderer { get; private set; }
@@ -75,21 +74,6 @@ namespace Gameplay.Player
         {
             _currentState?.Process();
             CheckState();
-
-            if (!isLocalPlayer)
-            {
-                return;
-            }
-            
-        }
-
-        [Client]
-        private void OnCollisionEnter(Collision other)
-        {
-            if (other.transform.GetComponent<PlayerNetwork>())
-            {
-                CmdNextColor(gameObject);
-            }
         }
 
         private void InitializeStates()
@@ -138,55 +122,6 @@ namespace Gameplay.Player
         {
             base.OnStartServer();
         }
-        
-        [Server]
-        private void SyncColorVar()
-        {
-            curSyncVarOfThisObject = curColOfThisObject;
-        }
-        
-        [ClientRpc]
-        private void RpcNextColor(int newValue)
-        {
-            if (!isClient)
-                return;
-
-            if (newValue >= material.Length)
-            {
-                return;
-            }
-
-            ActualChangeColorCode();
-        }
-        
-        void ActualChangeColorCode ()
-        {
-            curColOfThisObject++;
-            if (curColOfThisObject >= material.Length)
-                curColOfThisObject = 0;
-            
-            Debug.Log("Change material");
-            graphic.GetComponent<MeshRenderer>().material = material[curColOfThisObject];
-
-        }
-
-        private int GetCurColor()
-        {
-            return curColOfThisObject;
-        }
-        
-        [Command]
-        private void CmdNextColor(GameObject hitObject)
-        {
-            int curColor = GetCurColor();
-
-            RpcNextColor(curColor);
-
-            SyncColorVar();
-        }
-
-
-
 
         
     }

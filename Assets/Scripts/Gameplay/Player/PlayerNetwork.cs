@@ -7,7 +7,7 @@ namespace Gameplay.Player
     public class PlayerNetwork : NetworkBehaviour
     {
         [SerializeField] private TextMeshPro nameText;
-        [SerializeField] private Transform graphic;
+        public Player player;
         
 
         [SyncVar]

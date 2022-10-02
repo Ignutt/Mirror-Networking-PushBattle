@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 745058201201786315}
   - component: {fileID: 5830754812746309346}
   - component: {fileID: 8706118971184509171}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: UserNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 7820247951437984948}
   - component: {fileID: 7820247951437984947}
   - component: {fileID: 7820247951437984946}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,11 +279,12 @@ GameObject:
   - component: {fileID: 3173723141535172368}
   - component: {fileID: 7820247951513481833}
   - component: {fileID: 5292386247202608678}
+  - component: {fileID: 7949385610341405297}
   - component: {fileID: 5396915828284779435}
   - component: {fileID: 7011717818183103406}
   - component: {fileID: 3483926036555459753}
   - component: {fileID: 4125418763331706696}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,10 +357,6 @@ MonoBehaviour:
   speedMoving: 5
   smoothAngleTime: 0.02
   dashSpeed: 450
-  material:
-  - {fileID: 2100000, guid: d07b444429ec2f9438c5cec70ffcf3ea, type: 2}
-  - {fileID: 2100000, guid: 10fdf8b0721c62b44b6eadad80913ee6, type: 2}
-  - {fileID: 2100000, guid: 4270cad5fadbe38428cfe62c817d6504, type: 2}
 --- !u!114 &5292386247202608678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,8 +372,26 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   nameText: {fileID: 5830754812746309346}
-  graphic: {fileID: 7820247951437984948}
+  player: {fileID: 7820247951513481833}
   playerName: 
+--- !u!114 &7949385610341405297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7820247951513481832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db13ff4a6c1995f4ca03ef8e8b8e0e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  player: {fileID: 7820247951513481833}
+  contusionColor: {r: 0, g: 1, b: 1, a: 1}
+  contusionLayer: Contusion
+  contusionTime: 3
 --- !u!114 &5396915828284779435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,7 +491,7 @@ GameObject:
   - component: {fileID: 7820247952587616346}
   - component: {fileID: 7820247952587616345}
   - component: {fileID: 7820247952587616344}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7820247953031545568}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
